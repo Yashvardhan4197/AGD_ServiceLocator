@@ -12,8 +12,6 @@ namespace ServiceLocator.Player
         [SerializeField] private UIService uiService;
         [SerializeField] private MapService mapService;
         [SerializeField] private SoundService soundService;
-        [SerializeField] private PlayerService playerService;
-
         [SerializeField] public PlayerScriptableObject playerScriptableObject;
 
         private ProjectilePool projectilePool;
@@ -23,9 +21,25 @@ namespace ServiceLocator.Player
         private int health;
         public int Money { get; private set; }
 
+
+        public static PlayerService Instance { get { return instance; } }
+        private static PlayerService instance;
+
+        private void Awake()
+        {
+            if(instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
         private void Start()
         {
-            projectilePool = new ProjectilePool(playerService, playerScriptableObject.ProjectilePrefab, playerScriptableObject.ProjectileScriptableObjects);
+            projectilePool = new ProjectilePool(playerScriptableObject.ProjectilePrefab, playerScriptableObject.ProjectileScriptableObjects);
             InitializeVariables();
         }
 
