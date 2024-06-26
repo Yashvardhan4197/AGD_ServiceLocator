@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using ServiceLocator.Player;
 using ServiceLocator.Events;
+using GluonGui.WorkspaceWindow.Views.WorkspaceExplorer.Explorer;
 
 namespace ServiceLocator.Map
 {
-    public class MapService : MonoBehaviour
+    public class MapService : GenericMonoSingleton<MapService>
     {
         [SerializeField] private EventService eventService;
         [SerializeField] private MapScriptableObject mapScriptableObject;
@@ -15,6 +16,9 @@ namespace ServiceLocator.Map
         private Tilemap currentTileMap;
         private MapData currentMapData;
         private SpriteRenderer tileOverlay;
+
+
+
 
         private void Start()
         {
