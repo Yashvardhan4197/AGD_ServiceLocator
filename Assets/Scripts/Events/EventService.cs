@@ -9,10 +9,14 @@ namespace ServiceLocator.Events
     public class EventService
     {
         public GameEventController<int> OnMapSelected { get; private set; }
-
-        public EventService()
+        
+        public void Init()
         {
             OnMapSelected = new GameEventController<int>();
+        }
+        public EventService()
+        {
+            
         }
 
     }

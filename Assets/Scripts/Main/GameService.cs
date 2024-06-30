@@ -34,14 +34,22 @@ namespace ServiceLocator.Main
 
         private void Start()
         {
+            createReference();
+            EventService.Init();
+            PlayerService.Init(UIService,MapService,SoundService);
+            MapService.Init(EventService);
+            SoundService.Init();
+            UIService.Init(EventService, WaveService);
+            WaveService.Init(EventService, UIService, MapService, SoundService);
+        }
+
+        private void createReference()
+        {
             EventService = new EventService();
-            UIService.SubscribeToEvents();
             MapService = new MapService(mapScriptableObject);
             WaveService = new WaveService(waveScriptableObject);
             SoundService = new SoundService(soundScriptableObject, SFXSource, BGSource);
             PlayerService = new PlayerService(playerScriptableObject);
-
-            PlayerService.Init(UIService,MapService,SoundService);
         }
 
         private void Update()
