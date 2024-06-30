@@ -39,8 +39,8 @@ namespace ServiceLocator.Main
             PlayerService.Init(UIService,MapService,SoundService);
             MapService.Init(EventService);
             SoundService.Init();
-            UIService.Init(EventService, WaveService);
-            WaveService.Init(EventService, UIService, MapService, SoundService);
+            UIService.Init(EventService, WaveService,PlayerService);
+            WaveService.Init(PlayerService,EventService, UIService, MapService, SoundService);
         }
 
         private void createReference()
