@@ -4,11 +4,12 @@ namespace ServiceLocator.Wave.Bloon
 {
     public class BloonView : MonoBehaviour
     {
-        public BloonController Controller { get ; set ; }
+        public BloonController Controller{ get ; set ; }
         
         private SpriteRenderer spriteRenderer;
         private Animator animator;
 
+        
         private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
